@@ -1,0 +1,34 @@
+- tests:
+    - aws_with -R us-east-1 uptime
+    - aws_with -R 'ap*' uptime
+    - aws_with -R 'us-*,*south*' uptime
+    - aws_with -R 'us-*' aws ec2 describe-instances
+    - aws_with -q -R 'us-*' aws ec2 describe-instances
+    - aws_with -q -R 'ap-*' aws ec2 describe-instances
+    - aws_with -a 833567632276
+    - aws_with -a 912793868281
+    - aws_with -a 833567632276 -r OrganizationAccountAccessRole
+    - aws_with -a 137507561461,200616150143,912793868281 uptime
+    - aws_with -r role-bastion-server
+    - aws_with -r admin
+    - aws_with -o / uptime
+    - aws_with -o /Technology uptime
+    - aws_with -o '/Technology/Administrative Accounts' uptime
+    - aws_with -o /Marketing uptime
+    - aws_with -o '/Technology/Digital Bank Products/eCommerce Sites' uptime
+    - aws_with -x -o /Marketing,/Technology uptime
+    - aws_with -x -o '/Technology/Digital Bank Products/eCommerce Sites' uptime
+    - aws_with -m -x -o / uptime
+    - aws_with -x -o / uptime
+    - aws_with -t 0 -R '*' uptime
+    - time aws_with -t1 -R '*' sleep 2
+    - time aws_with -t10 -R '*' sleep 2
+    - aws_with -f json -R 'us-east-*' uptime
+    - aws_with -f yaml -R 'us-east-*' uptime
+    - aws_with -f text -R 'us-east-*' uptime
+    - aws_with -f yaml -R 'ap-south*' aws ec2 describe-instances
+    - aws_with -f yaml -R 'ap-south*' ec2 describe-instances
+    - aws_with -g -f yaml -R 'ap-south*' ec2 describe-instances
+    - aws_with -g -e -t1 -f yaml -R 'ap-south*' ec2 describe-instances
+    - aws_with -p read_only_fred -R 'ap-south*' aws sts get-caller-identity
+    - aws_with -p read_only_fred -R 'ap-south*' aws s3 ls

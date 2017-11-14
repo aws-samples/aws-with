@@ -1,0 +1,6 @@
+.cache/
+.tox/
+aws_with.egg-info/
+*.pyc
+__pycache__
+dist/

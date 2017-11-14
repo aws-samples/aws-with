@@ -1,0 +1,70 @@
+- move ideas and TODO tasks into GitHub issues and then remove this file
+
+- use codebuild and transient docker images
+    - use this: aws/codebuild/eb-python-3.4-amazonlinux-64:2.1.6
+    - see: http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html
+    - need to:
+        - code build to take amazonlinux container
+        -            then add various build / testing tools and python versions
+        - then pipeline can use that docker container (how do I get an amazonlinux in there in the first place)
+
+- think about version number tracking for "candidate" vs. actual PIP releases
+    - probably easiest to query "pip" to get latest version and abort if current is not newer
+    - can make the pipeline publish for manual testing and manual approval and version update to PIP publish?
+    - inject build information into __init__.py
+
+- read up on python "coverage" tool
+
+- environment setup
+    - install versions of python
+        - sudo yum -y install python26 python26-pip
+        - sudo yum -y install python27 python27-pip
+        - sudo yum -y install python34 python34-pip
+        - sudo yum -y install python35 python35-pip
+        - python 3.6 will need manual installing
+            - sudo yum -y install gcc zlib-devel
+            - mkdir /tmp/py36 ; cd /tmp/py36
+            - wget https://www.python.org/ftp/python/3.6.2/Python-3.6.2.tgz
+            - tar xzf Python-3.6.2.tgz
+            - cd Python-3.6.2
+            - ./configure --prefix=/usr
+            - sudo make altinstall
+            - cd ; sudo rm -rf /tmp/py36
+            - sudo ln -s /usr/bin/pip3.6 /usr/bin/pip-3.6
+            - # sudo ln -s /usr/local/bin/python3.6 /usr/bin/python36
+            - # sudo ln -s /usr/local/bin/pip3.6 /usr/bin/pip-3.6
+        - sudo pip-3.5 install twine
+        - sudo pip-3.5 install tox
+        - tox -e py26,py27,py34,py35,py36
+    - pip install twine
+    - pip install tox
+
+- build
+    - inject build time and git commit hash into the source code: __init__.py
+        - CODEBUILD_RESOLVED_SOURCE_VERSION has the git commit hash
+        - TZ=UTC date '+%Y-%m-%d %H:%M:%S'
+    - check version is GIT is newer than latest published pip version
+        - import aws_with
+        - import requests
+        - import pkg_resources
+        - aws_with.VERSION
+        - pypi_version=requests.get("https://pypi.org/pypi/aws-with/json")
+        - print(pypi_version.status_code) # make sure == 200
+        - versions=pypi_version.json()["releases"].keys()
+        - sorted(version, key=pkg_resources.parse_version, reverse=True)[0]
+
+- unit test
+    - INPUT: dist/aws_with-[0-9.]*.tar.gz
+    - python setup.py install
+    - read up on testing with tox
+        - info: https://pypi.org/project/twine/
+        - http://tox.readthedocs.io/en/latest/example/basic.html
+        - https://tox.readthedocs.io/en/latest/examples.html
+
+- integration test
+    - read up on testing with tox
+
+- release
+    - twine upload dist/aws_with-0.9.linux-x86_64.tar.gz
+    - tag the git repo hash with the released version number
+
