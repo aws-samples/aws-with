@@ -33,7 +33,7 @@ def gather_command_outputs(logger, options, commands_list):
                 oo_key_count = len(command_output.keys())
                 oo_single_key = oo_key_count == 1
                 if oo_single_key:
-                    oo_key_values = len(command_output[command_output.keys()[0]])
+                    oo_key_values = len(command_output[list(command_output.keys())[0]])
                     oo_single_empty_key = oo_key_values == 0
 
             # check for literally no output...
