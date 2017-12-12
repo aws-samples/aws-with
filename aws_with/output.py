@@ -26,6 +26,7 @@ def gather_command_outputs(logger, options, commands_list):
         # check if we have an output object that shouldn't be suppressed from --quiet...
         if "output" in cmd.keys():
             command_output = cmd["output"]["output"]
+            logger.debug("Command output: %s", command_output)
             oo_single_key = False
             oo_single_empty_key = False
             if isinstance(command_output, dict):
