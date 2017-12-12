@@ -24,7 +24,7 @@ setup(
     packages=["aws_with"],
     install_requires=install_requires,
     extras_require={},
-    data_files = [("", ["LICENSE.txt"])],
+    data_files = [("", ["LICENSE"])],
     entry_points={'console_scripts': ['aws_with = aws_with.main:main']},
     classifiers=[
                     'Development Status :: 4 - Beta',

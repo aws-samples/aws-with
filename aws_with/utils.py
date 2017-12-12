@@ -57,6 +57,8 @@ def setup_logging(options):
     formatter = logging.Formatter('%(asctime)s %(levelname)s(%(threadName)s): %(message)s')
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
+    if options.verbosity is None:
+        options.verbosity = 0
     if options.verbosity >= 1:
         logger.setLevel(logging.INFO)
     if options.verbosity >= 2:
