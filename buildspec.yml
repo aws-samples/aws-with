@@ -4,6 +4,9 @@ phases:
   install:
     commands:
       - echo install dependencies
+      - set
+      - ps -ejH
+      - echo $$
   pre_build:
     commands:
       - echo sanity check the installed software?
@@ -16,4 +19,5 @@ phases:
 artifacts:
   files:
     - dist/aws_with-*.tar.gz
+    - testspec.yml
   discard-paths: yes

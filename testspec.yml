@@ -3,17 +3,24 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo install various pip tools
-      - echo how do I get python36 installed easily?  Make a tarball / docker container?!???
+      - pip install pip --upgrade
+      - pip install lizard --upgrade
+      - pip install pylint --upgrade
+      - echo TODO install Python3.6
+      - echo TODO install/upgrade tox
   pre_build:
     commands:
-      - sanity check the installed software?
+      - tar zxvf aws_with-*.tar.gz
+      - cd aws_with-[0-9.]*
   build:
     commands:
-      - tox -e py26
-      - tox -e py27
-      - tox -e py34
-      - tox -e py35
-      - tox -e py36
-  post_build:
-    commands:
+      - cd aws_with
+      - lizard --version
+      - lizard
+      - pylint --version
+      - pylint .
+      - echo TODO run tox -e py26
+      - echo TODO run tox -e py27
+      - echo TODO run tox -e py34
+      - echo TODO run tox -e py35
+      - echo TODO run tox -e py36
