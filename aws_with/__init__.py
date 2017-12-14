@@ -11,7 +11,7 @@
 
 VERSION = "0.9.7"
 BUILD_TIME = "2017-12-12 08:16:36"
-BUILD_COMMIT_HASH = "fe0ad55b306a07a9f84933b8ecd1d44c8d96ceb2"
+BUILD_COMMIT_HASH = "f2ddf932435f6426a8758c2a23e511e4e1df5e34"
 
 __title__ = "aws_with"
 __version__ = VERSION
