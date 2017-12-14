@@ -22,6 +22,7 @@ import os
 import threading
 import boto3
 import botocore
+import socket
 
 from . import regions, utils, organizations, commands
 
@@ -118,8 +119,8 @@ def build_work_plan(logger, options, sts_client):
                 logger.debug("Calling STS to get temporary credentials for: %s", arn)
                 assumed_role = sts_client.assume_role(
                     RoleArn=arn,
-                    RoleSessionName="{}@{}".format(os.environ["USER"], os.environ["HOSTNAME"]),
-                    ExternalId="{}@{}".format(os.environ["USER"], os.environ["HOSTNAME"])
+                    RoleSessionName="{}@{}".format(os.environ["USER"], socket.gethostname()),
+                    ExternalId="{}@{}".format(os.environ["USER"], socket.gethostname())
                 )
 
             except botocore.exceptions.BotoCoreError as be_bce:

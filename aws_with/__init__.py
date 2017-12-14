@@ -9,9 +9,9 @@
 #from . import cli
 #from . import main
 
-VERSION = "0.9.5"
+VERSION = "0.9.7"
 BUILD_TIME = "2017-12-12 08:16:36"
-BUILD_COMMIT_HASH = "147ac63e20afba0a60b63c0f82b8e22548e72bfa"
+BUILD_COMMIT_HASH = "fe0ad55b306a07a9f84933b8ecd1d44c8d96ceb2"
 
 __title__ = "aws_with"
 __version__ = VERSION
@@ -20,3 +20,4 @@ __license__ = "APACHE2"
 __uri__ = "https://aws.amazon.com/"
 __author__ = "Mike Evans"
 __email__ = "miev@amazon.com"
+
