@@ -4,18 +4,15 @@ phases:
   install:
     commands:
       - echo install dependencies
-      - set
-      - ps -ejH
-      - echo $$
   pre_build:
     commands:
-      - echo sanity check the installed software?
+      - set
+      - find .
   build:
     commands:
       - python setup.py sdist
   post_build:
     commands:
-      - find .
 artifacts:
   files:
     - dist/aws_with-*.tar.gz
