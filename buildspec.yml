@@ -3,8 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo install various pip tools
-      - echo how do I get python36 installed easily?  Make a tarball / docker container?!???
+      - echo install dependencies
   pre_build:
     commands:
       - echo sanity check the installed software?
@@ -13,3 +12,8 @@ phases:
       - python setup.py sdist
   post_build:
     commands:
+      - find .
+artifacts:
+  files:
+    - dist/aws_with-*.tar.gz
+  discard-paths: yes
