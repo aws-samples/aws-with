@@ -9,7 +9,7 @@
 #from . import cli
 #from . import main
 
-VERSION = "0.9.8"
+VERSION = "0.9.9"
 BUILD_TIME = "2017-12-12 08:16:36"
 BUILD_COMMIT_HASH = "f2ddf932435f6426a8758c2a23e511e4e1df5e34"
 

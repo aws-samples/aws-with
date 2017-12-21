@@ -82,5 +82,9 @@ def get_accounts_for_ou(logger, options, org_client, path):
                                            "Accounts", **args)
         for acc in accounts:
             acc["Path"] = org_unit["Path"]
-        result.extend(accounts)
+            if 'Status' in acc:
+                if acc['Status'] != 'SUSPENDED':
+                    result.append(acc)
+                else:
+                    logger.info("found suspended account %s, ignoring it." % acc)
     return result
