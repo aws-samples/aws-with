@@ -10,8 +10,8 @@
 #from . import main
 
 VERSION = "0.9.9"
-BUILD_TIME = "2017-12-12 08:16:36"
-BUILD_COMMIT_HASH = "f2ddf932435f6426a8758c2a23e511e4e1df5e34"
+BUILD_TIME = "2018-01-08 06:12:42"
+BUILD_COMMIT_HASH = "4542b1251b20d908dc706c05c98b70ed8dfc2710"
 
 __title__ = "aws_with"
 __version__ = VERSION
