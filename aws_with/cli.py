@@ -120,7 +120,22 @@ EXAMPLES:
 
 def show_version():
     """ display version information and then exit """
+    import os
+    import inspect
+    import awscli
+    import boto3
+    import botocore
+    import subprocess
     print("aws_with version: {}".format(sys.modules["aws_with"].VERSION))
+    print("aws_with key libraries:")
+    print("    aws {} from {}".format(
+        subprocess.check_output(['aws','--version'], stderr=subprocess.STDOUT).replace('\n',''),
+        subprocess.check_output(['which','aws']).replace('\n','')
+    ))
+    print("    awscli {} from {}".format(awscli.__version__, os.path.dirname(inspect.getfile(awscli))))
+    print("    boto3 {} from {}".format(boto3.__version__, os.path.dirname(inspect.getfile(boto3))))
+    print("    botocore {} from {}".format(botocore.__version__, os.path.dirname(inspect.getfile(botocore))))
+    print("    python {} from {}".format(sys.version.replace('\n',''), sys.executable))
     sys.exit(0)
 
 def error(message):
